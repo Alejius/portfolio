@@ -703,6 +703,7 @@ html {
 
 .timeline ul {
   list-style: none;
+  font-family: 'Ubuntu', sans-serif;
 }
 .timeline ul li {
   padding: 20px;
