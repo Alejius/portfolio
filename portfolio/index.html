@@ -121,7 +121,7 @@
                         Análisis estadístico: Aplicación de técnicas estadísticas avanzadas
                         para identificar tendencias, patrones y relaciones significativas en los
                         datos con “R studio”.</p>
-                    <a href="#">Read more</a>
+                    <a href="#">Lee mas</a>
                 </div>
                 <div class="column right">
                     <div class="bars">
@@ -341,7 +341,7 @@
     <!-- contact section start -->
     <section class="contact" id="contact">
         <div class="max-width">
-            <h2 class="title">Contactactame</h2>
+            <h2 class="title">Contacto</h2>
             <div class="contact-content">
                 <div class="column left">
                     <div class="text">Conectemos</div>
@@ -372,20 +372,20 @@
                 </div>
                 <div class="column right">
                     <div class="text">Mensaje</div>
-                    <form action="#">
+                    <form name="my_google_sheet" action="https://script.google.com/macros/s/AKfycbz5RBVxhWlK_ctU9nW7TVk8YrOUH1uHg_x1j4g61KmV8w6bib6-znwBAzT7IK5kIH2r/exec" method="POST">
                         <div class="fields">
                             <div class="field name">
-                                <input type="text" placeholder="Nombre" required>
+                                <input type="text" name="nombre" placeholder="Nombre" class="form-control" required>
                             </div>
                             <div class="field email">
-                                <input type="email" placeholder="Email" required>
+                                <input type="email" name="mail" placeholder="Email" class="form-control" required>
                             </div>
                         </div>
                         <div class="field">
-                            <input type="text" placeholder="Asunto" required>
+                            <input type="text" name="asunto" placeholder="Asunto" class="form-control" required>
                         </div>
                         <div class="field textarea">
-                            <textarea cols="30" rows="10" placeholder="Mensaje.." required></textarea>
+                            <textarea cols="30" rows="10" name="mensaje" class="form-control" placeholder="Mensaje.." required></textarea>
                         </div>
                         <div class="button-area">
                             <button type="submit">Enviar Mensaje</button>
@@ -397,5 +397,30 @@
     </section>
 
     <script src="script.js"></script>
+    <script>
+        document.forms["my_google_sheet"].addEventListener("submit", function (event) {
+            // Evitar que el formulario se envíe de forma predeterminada
+            event.preventDefault();
+    
+            // Enviar el formulario a Google Sheets usando fetch
+            fetch(this.action, {
+                method: this.method,
+                body: new FormData(this),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Muestra un mensaje de éxito
+                alert("Formulario enviado exitosamente a Google Sheets");
+    
+                // Puedes redirigir a la página index.html después de enviar el formulario
+                window.location.href = "#";
+            })
+            .catch(error => {
+                // Manejar errores, por ejemplo, mostrando un mensaje de error
+                alert("Error al enviar el formulario a Google Sheets");
+                console.error(error);
+            });
+        });
+    </script>
 </body>
 </html>
